@@ -10,3 +10,5 @@ services:
       - './users-service:/usr/src/app'
     ports:
       - 5001:5000
+    environment:
+      - APP_SETTINGS=project.config.DevelopmentConfig
