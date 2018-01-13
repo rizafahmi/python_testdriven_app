@@ -28,14 +28,14 @@ class TestUserService(BaseTestCase):
             response = self.client.post(
                 '/users',
                 data=json.dumps({
-                    'username': 'michael',
-                    'email': 'michael@realpython.com'
+                    'username': 'riza',
+                    'email': 'riza@hacktiv8.com'
                 }),
                 content_type='application/json'
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
-            self.assertIn('michael@realpython.com was added!', data['message'])
+            self.assertIn('riza@hacktiv8.com was added!', data['message'])
             self.assertIn('OK', data['status'])
 
     def test_add_user_invalid_json(self):
@@ -56,7 +56,7 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/users',
-                data=json.dumps({'email': 'michael@realpython.com'}),
+                data=json.dumps({'email': 'riza@hacktiv8.com'}),
                 content_type='application/json'
             )
             data = json.loads(response.data.decode())
@@ -70,16 +70,16 @@ class TestUserService(BaseTestCase):
             self.client.post(
                 '/users',
                 data=json.dumps({
-                    'username': 'michael',
-                    'email': 'michael@realpython.com'
+                    'username': 'riza',
+                    'email': 'riza@hacktiv8.com'
                 }),
                 content_type='application/json'
             )
             response = self.client.post(
                 '/users',
                 data=json.dumps({
-                    'username': 'michael',
-                    'email': 'michael@realpython.com'
+                    'username': 'riza',
+                    'email': 'riza@hacktiv8.com'
                 }),
                 content_type='application/json'
             )
@@ -92,13 +92,13 @@ class TestUserService(BaseTestCase):
 
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
-        user = add_user(username='michael', email='michael@realpython.com')
+        user = add_user(username='riza', email='riza@hacktiv8.com')
         with self.client:
             response = self.client.get(f'/users/{user.id}')
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 200)
-            self.assertIn('michael', data['data']['username'])
-            self.assertIn('michael@realpython.com', data['data']['email'])
+            self.assertIn('riza', data['data']['username'])
+            self.assertIn('riza@hacktiv8.com', data['data']['email'])
             self.assertIn('OK', data['status'])
 
     def test_single_user_incorrect_id(self):
@@ -112,15 +112,15 @@ class TestUserService(BaseTestCase):
 
     def test_all_user(self):
         """Ensure get all users behaves correctly."""
-        add_user('michael', 'michael@realpython.com')
+        add_user('riza', 'riza@hacktiv8.com')
         add_user('riza', 'rizafahmi@hacktiv8.com')
         with self.client:
             response = self.client.get('/users')
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 200)
             self.assertEqual(len(data['data']['users']), 2)
-            self.assertIn('michael', data['data']['users'][0]['username'])
-            self.assertIn('michael@realpython.com', data['data']['users'][0]['email'])
+            self.assertIn('riza', data['data']['users'][0]['username'])
+            self.assertIn('riza@hacktiv8.com', data['data']['users'][0]['email'])
             self.assertIn('riza', data['data']['users'][1]['username'])
             self.assertIn('rizafahmi@hacktiv8.com', data['data']['users'][1]['email'])
             self.assertIn('OK', data['status'])
