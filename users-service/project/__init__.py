@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -8,6 +8,7 @@ app_settings = os.getenv('APP_SETTINGS')
 app.config.from_object(app_settings)
 
 db = SQLAlchemy(app)
+
 
 def create_app():
     app = Flask(__name__)
