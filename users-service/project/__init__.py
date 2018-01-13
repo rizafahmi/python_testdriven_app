@@ -5,6 +5,7 @@ from flask_cors import CORS
 
 db = SQLAlchemy()
 
+
 def create_app():
     app = Flask(__name__)
 
@@ -12,7 +13,6 @@ def create_app():
 
     app_settings = os.getenv('APP_SETTINGS')
     app.config.from_object(app_settings)
-
 
     db.init_app(app)
 
