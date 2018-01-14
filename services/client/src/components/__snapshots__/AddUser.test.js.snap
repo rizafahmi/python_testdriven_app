@@ -2,7 +2,7 @@
 
 exports[`AddUser renders a snapshot properly 1`] = `
 <form
-  onSubmit={[Function]}
+  onSubmit={undefined}
 >
   <div
     className="form-group"
@@ -10,20 +10,24 @@ exports[`AddUser renders a snapshot properly 1`] = `
     <input
       className="form-control input-lg"
       name="username"
+      onChange={undefined}
       placeholder="Enter a username"
       required={true}
       type="text"
+      value={undefined}
     />
   </div>
   <div
     className="form-group"
   >
     <input
-      class="form-control input-lg"
+      className="form-control input-lg"
       name="email"
+      onChange={undefined}
       placeholder="Enter your email"
       required={true}
       type="email"
+      value={undefined}
     />
   </div>
   <input
