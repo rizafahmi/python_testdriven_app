@@ -2,15 +2,7 @@ import json
 import unittest
 
 from project.tests.base import BaseTestCase
-from project import db
-from project.api.models import User
-
-
-def add_user(username, email):
-    user = User(username=username, email=email)
-    db.session.add(user)
-    db.session.commit()
-    return user
+from project.tests.utils import add_user
 
 
 class TestUserService(BaseTestCase):
@@ -67,7 +59,7 @@ class TestUserService(BaseTestCase):
             self.assertIn('Invalid payload.', data['message'])
             self.assertIn('KO', data['status'])
 
-    def test_add_user_duplicate_user(self):
+    def test_add_user_duplicate_email(self):
         """Ensure error is thrown if the email already exists."""
         with self.client:
             self.client.post(
@@ -116,7 +108,7 @@ class TestUserService(BaseTestCase):
     def test_all_user(self):
         """Ensure get all users behaves correctly."""
         add_user('riza', 'riza@hacktiv8.com')
-        add_user('riza', 'rizafahmi@hacktiv8.com')
+        add_user('rizafahmi', 'rizafahmi@hacktiv8.com')
         with self.client:
             response = self.client.get('/users')
             data = json.loads(response.data.decode())
