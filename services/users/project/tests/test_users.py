@@ -23,7 +23,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'riza',
-                    'email': 'riza@hacktiv8.com'
+                    'email': 'riza@hacktiv8.com',
+                    'password': 'test'
                 }),
                 content_type='application/json'
             )
@@ -51,7 +52,7 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/users',
-                data=json.dumps({'email': 'riza@hacktiv8.com'}),
+                data=json.dumps(dict(username='riza', email='riza@hacktiv8.com')),
                 content_type='application/json'
             )
             data = json.loads(response.data.decode())
@@ -66,7 +67,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'riza',
-                    'email': 'riza@hacktiv8.com'
+                    'email': 'riza@hacktiv8.com',
+                    'password': 'test'
                 }),
                 content_type='application/json'
             )
@@ -74,7 +76,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'riza',
-                    'email': 'riza@hacktiv8.com'
+                    'email': 'riza@hacktiv8.com',
+                    'password': 'test'
                 }),
                 content_type='application/json'
             )
@@ -87,7 +90,7 @@ class TestUserService(BaseTestCase):
 
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
-        user = add_user(username='riza', email='riza@hacktiv8.com')
+        user = add_user(username='riza', email='riza@hacktiv8.com', password='220281')
         with self.client:
             response = self.client.get(f'/users/{user.id}')
             data = json.loads(response.data.decode())
@@ -107,8 +110,8 @@ class TestUserService(BaseTestCase):
 
     def test_all_user(self):
         """Ensure get all users behaves correctly."""
-        add_user('riza', 'riza@hacktiv8.com')
-        add_user('rizafahmi', 'rizafahmi@hacktiv8.com')
+        add_user('riza', 'riza@hacktiv8.com', password='220281')
+        add_user('rizafahmi', 'rizafahmi@hacktiv8.com', password='220281')
         with self.client:
             response = self.client.get('/users')
             data = json.loads(response.data.decode())
@@ -133,8 +136,8 @@ class TestUserService(BaseTestCase):
     def test_main_with_users(self):
         """Ensure the main route behaves correctly when users have been
         created to the database."""
-        add_user('riza', 'riza@hacktiv8.com')
-        add_user('rizafahmi', 'rizafahmi@gmail.com')
+        add_user('riza', 'riza@hacktiv8.com', password='220281')
+        add_user('rizafahmi', 'rizafahmi@gmail.com', password='220281')
         with self.client:
             response = self.client.get('/')
             self.assertEqual(response.status_code, 200)
@@ -148,7 +151,7 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/',
-                data=dict(username='riza', email='riza@hacktiv8.com'),
+                data=dict(username='riza', email='riza@hacktiv8.com', password='220281'),
                 follow_redirects=True
             )
             self.assertEqual(response.status_code, 200)
