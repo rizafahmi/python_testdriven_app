@@ -52,7 +52,9 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/users',
-                data=json.dumps(dict(username='riza', email='riza@hacktiv8.com')),
+                data=json.dumps(dict(
+                    username='riza',
+                    email='riza@hacktiv8.com')),
                 content_type='application/json'
             )
             data = json.loads(response.data.decode())
@@ -90,7 +92,10 @@ class TestUserService(BaseTestCase):
 
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
-        user = add_user(username='riza', email='riza@hacktiv8.com', password='220281')
+        user = add_user(
+            username='riza',
+            email='riza@hacktiv8.com',
+            password='220281')
         with self.client:
             response = self.client.get(f'/users/{user.id}')
             data = json.loads(response.data.decode())
@@ -151,7 +156,10 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/',
-                data=dict(username='riza', email='riza@hacktiv8.com', password='220281'),
+                data=dict(
+                    username='riza',
+                    email='riza@hacktiv8.com',
+                    password='220281'),
                 follow_redirects=True
             )
             self.assertEqual(response.status_code, 200)
