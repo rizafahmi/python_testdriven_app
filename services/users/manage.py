@@ -38,8 +38,8 @@ def test():
 @manager.command
 def seed_db():
     """Seed the database."""
-    db.session.add(User(username='riza', email='riza@hacktiv8.com'))
-    db.session.add(User(username='rizafahmi', email='rizafahmi@hacktiv8.com'))
+    db.session.add(User(username='riza', email='riza@hacktiv8.com', password='220281'))
+    db.session.add(User(username='rizafahmi', email='rizafahmi@hacktiv8.com', password='220281'))
     db.session.commit()
 
 @manager.command
