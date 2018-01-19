@@ -27,13 +27,17 @@ class User(db.Model):
             'email': self.email,
             'active': self.active
         }
+
     def encode_auth_token(self, user_id):
         """Generate the auth token"""
+        expiration_days = current_app.config.get('TOKEN_EXPIRATION_DAYS')
+        expiration_seconds = current_app.config.get('TOKEN_EXPIRATION_SECONDS')
         try:
             payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(
-                    days=current_app.config.get('TOKEN_EXPIRATION_DAYS'),
-                    seconds=current_app.config.get('TOKEN_EXPIRATION_SECONDS')),
+                'exp': datetime.datetime.utcnow() +
+                datetime.timedelta(
+                    days=expiration_days,
+                    seconds=expiration_seconds),
                 'iat': datetime.datetime.utcnow(),
                 'sub': user_id
             }
@@ -47,9 +51,14 @@ class User(db.Model):
 
     @staticmethod
     def decode_auth_token(auth_token):
-        """Decodes the auth token - :param auth_token: - :return: integer|string"""
+        """Decodes the auth token
+                    - :param auth_token:
+                    - :return: integer|string
+        """
         try:
-            payload = jwt.decode(auth_token, current_app.config.get('SECRET_KEY'))
+            payload = jwt.decode(
+                auth_token,
+                current_app.config.get('SECRET_KEY'))
             return payload['sub']
         except jwt.ExpiredSignatureError:
             return 'Signature expired. Please login again.'

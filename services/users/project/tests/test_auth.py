@@ -1,10 +1,9 @@
 import json
 
-from project import db
-from project.api.models import User
 from project.tests.base import BaseTestCase
 from project.tests.utils import add_user
 from flask import current_app
+
 
 class TestAuthBlueprint(BaseTestCase):
     def test_user_registration(self):
@@ -44,7 +43,7 @@ class TestAuthBlueprint(BaseTestCase):
             )
             self.assertIn('KO', data['status'])
 
-    def test_user_registration_duplicate_email(self):
+    def test_user_registration_duplicate_username(self):
         add_user('test', 'test@test.com', 'test')
         with self.client:
             response = self.client.post(
@@ -218,7 +217,8 @@ class TestAuthBlueprint(BaseTestCase):
 
             data = json.loads(response.data.decode())
             self.assertTrue(data['status'] == 'KO')
-            self.assertTrue(data['message'] == 'Invalid token. Please login again.')
+            self.assertTrue(
+                data['message'] == 'Invalid token. Please login again.')
             self.assertEqual(response.status_code, 401)
 
     def test_user_status(self):
