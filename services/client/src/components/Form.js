@@ -12,7 +12,6 @@ const Form = props => {
               name='username'
               type='text'
               placeholder='Enter a username'
-              required
               value={props.formData.username}
               onChange={props.handleFormChange}
             />
@@ -24,7 +23,6 @@ const Form = props => {
             name='email'
             type='email'
             placeholder='Enter an email address'
-            required
             value={props.formData.email}
             onChange={props.handleFormChange}
           />

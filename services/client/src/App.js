@@ -22,6 +22,8 @@ class App extends React.Component {
         password: ''
       }
     }
+
+    this.handleUserFormSubmit = this.handleUserFormSubmit.bind(this)
   }
   componentDidMount () {
     this.getUsers()
@@ -58,6 +60,10 @@ class App extends React.Component {
     obj[event.target.name] = event.target.value
     this.setState(obj)
   }
+  handleUserFormSubmit (event) {
+    event.preventDefault()
+    console.log('sanity check')
+  }
   render () {
     return (
       <div>
@@ -86,24 +92,29 @@ class App extends React.Component {
                     </div>
                   )}
                 />
-                <Route exact path='/about' component={About} />
                 <Route
-                  exact
                   path='/register'
+                  render={() => {
+                    return (
+                      <Form
+                        formType={'Register'}
+                        formData={this.state.formData}
+                        handleUserFormSubmit={this.handleUserFormSubmit}
+                      />
+                    )
+                  }}
+                />
+                <Route
+                  path='/login'
                   render={() => (
                     <Form
-                      formType={'Register'}
+                      formType={'Login'}
                       formData={this.state.formData}
+                      handleUserFormSubmit={this.handleUserFormSubmit}
                     />
                   )}
                 />
-                <Route
-                  exact
-                  path='/login'
-                  render={() => (
-                    <Form formType={'Login'} formData={this.state.formData} />
-                  )}
-                />
+                <Route exact path='/about' component={About} />
               </Switch>
             </div>
           </div>
