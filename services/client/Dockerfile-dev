@@ -6,9 +6,9 @@ WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 ADD package.json /usr/src/app/package.json
+ADD . /usr/src/app
 RUN npm install
 RUN npm install react-script -g --silent
 
-ADD . /usr/src/app
 
 CMD ["npm", "start"]

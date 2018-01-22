@@ -20,6 +20,6 @@
     "eject": "react-scripts eject"
   },
   "standard": {
-    "globals": ["test", "expect"]
+    "globals": ["test", "expect", "jest"]
   }
 }
