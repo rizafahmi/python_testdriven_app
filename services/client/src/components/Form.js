@@ -11,8 +11,8 @@ const Form = props => {
               className='form-control input-lg'
               name='username'
               type='text'
-              required
               placeholder='Enter a username'
+              required
               value={props.formData.username}
               onChange={props.handleFormChange}
             />
@@ -23,8 +23,8 @@ const Form = props => {
             className='form-control input-lg'
             name='email'
             type='email'
-            required
             placeholder='Enter an email address'
+            required
             value={props.formData.email}
             onChange={props.handleFormChange}
           />

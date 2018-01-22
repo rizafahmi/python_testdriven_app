@@ -16,7 +16,6 @@ exports[`Login snapshot 1`] = `
         name="email"
         onChange={undefined}
         placeholder="Enter an email address"
-        required={true}
         type="email"
         value=""
       />
@@ -29,7 +28,6 @@ exports[`Login snapshot 1`] = `
         name="password"
         onChange={undefined}
         placeholder="Enter a password"
-        required={true}
         type="password"
         value=""
       />
@@ -59,7 +57,6 @@ exports[`Register snapshot 1`] = `
         name="username"
         onChange={undefined}
         placeholder="Enter a username"
-        required={true}
         type="text"
         value=""
       />
@@ -72,7 +69,6 @@ exports[`Register snapshot 1`] = `
         name="email"
         onChange={undefined}
         placeholder="Enter an email address"
-        required={true}
         type="email"
         value=""
       />
@@ -85,7 +81,6 @@ exports[`Register snapshot 1`] = `
         name="password"
         onChange={undefined}
         placeholder="Enter a password"
-        required={true}
         type="password"
         value=""
       />
