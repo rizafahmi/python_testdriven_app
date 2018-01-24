@@ -2,15 +2,67 @@
 
 exports[`UsersList renders a snapshot properly 1`] = `
 <div>
-  <h4
-    className="well"
+  <h1>
+    All Users
+  </h1>
+  <table
+    className="table table-striped table-bordered table-condensed table-hover"
   >
-    riza
-  </h4>
-  <h4
-    className="well"
-  >
-    rizafahmi
-  </h4>
+    <thead>
+      <tr>
+        <th>
+          User ID
+        </th>
+        <th>
+          Email
+        </th>
+        <th>
+          Username
+        </th>
+        <th>
+          Active
+        </th>
+        <th>
+          Admin
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          1
+        </td>
+        <td>
+          riza@hacktiv8.com
+        </td>
+        <td>
+          riza
+        </td>
+        <td>
+          true
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+      <tr>
+        <td>
+          2
+        </td>
+        <td>
+          rizafahmi@gmail.com
+        </td>
+        <td>
+          rizafahmi
+        </td>
+        <td>
+          true
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;
